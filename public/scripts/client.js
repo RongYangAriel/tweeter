@@ -3,6 +3,13 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
+
+$(document).ready(function() {
+  // Test / driver code (temporary)
+  submitTweet(event);
+});
+
+
 const tweetsData = 
 [
   {
@@ -61,10 +68,14 @@ const createTweetElement = (tweet) => {
 }
 
 
-renderTweets(tweetsData);
+function submitTweet(event) {
+  $( "#form" ).submit(function( event ) {
+  event.preventDefault();
+  $.ajax('/tweets', { method: "POST", data: $( this ).serialize()})
+  .then(tweetsData.push( {"content": {'text':$( this ).serialize()}}))
+  .then(renderTweets(tweetsData));
+  }); 
+}
 
 
-$(document).ready(function() {
-  // Test / driver code (temporary)
-  renderTweets(tweetsData);
-});
+
