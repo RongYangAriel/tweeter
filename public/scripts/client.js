@@ -44,9 +44,11 @@ const createTweetElement = (tweet) => {
 function submitTweet() {
   $( "#form" ).submit(function( event ) {
   event.preventDefault();
-  $.ajax('/tweets', { method: "POST", data: $( this ).serialize()})
-  .then(console.log($( this ).serialize()))
-  .then(loadTweets());
+  if(validateTweet($( this ).serialize())) {
+    $.ajax('/tweets', { method: "POST", data: $( this ).serialize()})
+    .then(console.log($( this ).serialize()))
+    .then(loadTweets());
+  }
   }); 
 }
 
@@ -54,6 +56,16 @@ function submitTweet() {
 const loadTweets = () => {
   $.ajax('/tweets', {method: 'GET'})
   .then(newtweet => renderTweets(newtweet));
+}
+
+const validateTweet = (tweet) => {
+  if(tweet.length > 140){
+    alert("Tweet is too long!")
+  } else if(tweet == null) {
+    alert("tweet is empty");
+  } else {
+    return true
+  }
 }
 
 
