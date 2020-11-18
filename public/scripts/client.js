@@ -11,7 +11,7 @@ $(document).ready(function() {
 
 const renderTweets = (tweets) => {
   tweets.forEach(tweet => {
-    $('.tweet-container').append(createTweetElement(tweet));
+    $('.tweet-container').prepend(createTweetElement(tweet));
   })
 }
 
