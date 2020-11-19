@@ -6,6 +6,8 @@ $(document).ready(function() {
     console.log('fired');
     if (140 - this.value.length < 0) {
       $("output.counter").css('color', 'red');
+    } else {
+      $("output.counter").css('color', '#545149')
     }
   })
 });
