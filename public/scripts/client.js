@@ -8,14 +8,23 @@ $(document).ready(function() {
   submitTweet();
 });
 
-
+// render each tweet, prepend it to tweets html
 const renderTweets = (tweets) => {
   tweets.forEach(tweet => {
     $('.tweet-container').prepend(createTweetElement(tweet));
   })
 }
 
+// xss escape function
+const escape =  function(str) {
+  let div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
+}
+
 const createTweetElement = (tweet) => {
+  console.log(tweet);
+  const safeHTML = `<p>${escape(tweet.content.text)}</p>`
   return  ` <article class = 'tweet'>
           <header>
             <div class = 'name'>
@@ -27,7 +36,7 @@ const createTweetElement = (tweet) => {
             </div>
           </header>
           <p>
-          ${tweet.content.text}
+          ${safeHTML}
           </p>
           <footer>
             <div class = 'date'>
@@ -40,7 +49,7 @@ const createTweetElement = (tweet) => {
         </article>`
 }
 
-
+// send post request to /tweets, update new tweet
 function submitTweet() {
   $( "#form" ).submit(function( event ) {
   event.preventDefault();
@@ -52,12 +61,13 @@ function submitTweet() {
   }); 
 }
 
-
+// get tweets from /tweets, sent it to renderTweets()
 const loadTweets = () => {
   $.ajax('/tweets', {method: 'GET'})
   .then(newtweet => renderTweets(newtweet));
 }
 
+// validate tweet before submit it to /tweets
 const validateTweet = (tweet) => {
   if(tweet.length > 140){
     alert("Tweet is too long!")
