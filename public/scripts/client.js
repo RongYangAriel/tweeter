@@ -5,6 +5,8 @@
  */
 
 $(document).ready(function() {
+  $('#error').hide();
+  loadTweets();
   submitTweet();
 });
 
@@ -35,9 +37,7 @@ const createTweetElement = (tweet) => {
               <span>${tweet.user.handle}</span>
             </div>
           </header>
-          <p>
           ${safeHTML}
-          </p>
           <footer>
             <div class = 'date'>
             ${tweet.created_at}
@@ -70,10 +70,15 @@ const loadTweets = () => {
 // validate tweet before submit it to /tweets
 const validateTweet = (tweet) => {
   if(tweet.length > 140){
-    alert("Tweet is too long!")
-  } else if(tweet == null) {
-    alert("tweet is empty");
+    $("#error").html("<i class='material-icons'>&#xe002;</i> Tweet is too long! Please shorten it!! <i class='material-icons'>&#xe002;</i>");
+    $("#error").show();
+    return false;
+  } else if(tweet === 'text=') {
+    $("#error").html("<i class='material-icons'>&#xe002;</i> Tweet is empty. Please enter something! <i class='material-icons'>&#xe002;</i> ");
+    $("#error").show();
+    return false;
   } else {
+    $('#error').hide();
     return true
   }
 }

@@ -20,6 +20,8 @@
 
     <!-- External JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 
     <!-- App JS -->
     <script type="text/javascript" src="/scripts/client.js"></script>
@@ -47,6 +49,7 @@
     <!-- Page-specific (main) content here -->
     <main class="container">
       <section class="new-tweet">
+        <span id = "error">&#xe002;</span>
         <form action="/tweets" method="POST" id = "form">
           <textarea name="text" id="tweet-text" placeholder="What are you humming about?"></textarea>
           <div id="submit-note">

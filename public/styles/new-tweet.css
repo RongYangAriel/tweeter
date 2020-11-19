@@ -13,6 +13,7 @@
   border-left: none;
   border-right: none;
   margin-bottom: 10px;
+  margin-top:20px;
 }
 
 #submit-note {
@@ -24,4 +25,13 @@
 #submit-btn {
   background-color:#4056A1;
   color: #ffffff;
+}
+
+#error {
+  color: red;
+  font-weight: bold;
+  padding: 10px;
+  margin:auto;
+  border: 2px solid red;
+  text-align: center;
 }
