@@ -43,7 +43,6 @@ const createTweetElement = (tweet) => {
             ${tweet.created_at}
             </div>
             <div class = "action">
-               icons
             </div>
           </footer>
         </article>`

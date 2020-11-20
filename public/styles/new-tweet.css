@@ -29,6 +29,7 @@
 
 #error {
   color: red;
+  font-size: medium;
   font-weight: bold;
   padding: 10px;
   margin:auto;

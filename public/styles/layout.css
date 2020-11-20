@@ -52,3 +52,13 @@ main {
     background-color: goldenrod;
   }
 }
+
+@media only screen and (max-width:320px) {
+  span#error {
+    font-size: small;
+  }
+  .tweet header{
+    flex-direction: column;
+    justify-content: center;
+  }
+}
