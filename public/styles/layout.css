@@ -34,7 +34,7 @@ main {
 
 /* Media query */
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media (min-width: 768px) {
+@media only screen and (min-width: 768px)  {
   nav#nav {
     background-color: #4056A1;
   }

@@ -69,7 +69,8 @@ const loadTweets = () => {
 
 // validate tweet before submit it to /tweets
 const validateTweet = (tweet) => {
-  if(tweet.length > 140){
+  console.log(tweet.length);
+  if($('.counter').text() < 0){
     $("#error").html("<i class='material-icons'>&#xe002;</i> Tweet is too long! Please shorten it!! <i class='material-icons'>&#xe002;</i>");
     $("#error").show();
     return false;
