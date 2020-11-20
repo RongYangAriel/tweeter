@@ -17,7 +17,7 @@ const renderTweets = (tweets) => {
   })
 }
 
-// xss escape function
+// an escape function
 const escape =  function(str) {
   let div = document.createElement('div');
   div.appendChild(document.createTextNode(str));
@@ -25,7 +25,6 @@ const escape =  function(str) {
 }
 
 const createTweetElement = (tweet) => {
-  console.log(tweet);
   const safeHTML = `<p>${escape(tweet.content.text)}</p>`
   return  ` <article class = 'tweet'>
           <header>
@@ -54,7 +53,6 @@ function submitTweet() {
   event.preventDefault();
   if(validateTweet($( this ).serialize())) {
     $.ajax('/tweets', { method: "POST", data: $( this ).serialize()})
-    .then(console.log($( this ).serialize()))
     .then(loadTweets());
   }
   }); 
@@ -68,7 +66,6 @@ const loadTweets = () => {
 
 // validate tweet before submit it to /tweets
 const validateTweet = (tweet) => {
-  console.log(tweet.length);
   if($('.counter').text() < 0){
     $("#error").html("<i class='material-icons'>&#xe002;</i> Tweet is too long! Please shorten it!! <i class='material-icons'>&#xe002;</i>");
     $("#error").show();
