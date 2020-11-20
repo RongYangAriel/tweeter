@@ -5,8 +5,8 @@ You can enter new tweet, and it will display on the ttop of the tweet list.
 
 
 ## Project Preview
-["Screen shot of Desktop"](https://github.com/RongYangAriel/tweeter/blob/master/public/images/desktop.png)
-["Screenshot of Tablet"](https://github.com/RongYangAriel/tweeter/blob/master/public/images/smartphone.png)
+!["Screen shot of Desktop"](https://github.com/RongYangAriel/tweeter/blob/master/public/images/desktop.png)
+!["Screenshot of Tablet"](https://github.com/RongYangAriel/tweeter/blob/master/public/images/smartphone.png)
 
 
 ## Getting Started
