@@ -24,6 +24,8 @@ const escape =  function(str) {
   return div.innerHTML;
 }
 
+
+// create each tweet template
 const createTweetElement = (tweet) => {
   const safeHTML = `<p>${escape(tweet.content.text)}</p>`
   return  ` <article class = 'tweet'>
@@ -42,9 +44,12 @@ const createTweetElement = (tweet) => {
             ${tweet.created_at}
             </div>
             <div class = "action">
+              <a href="#"><i class="fa fa-flag"></i></a>
+              <a href="#"><i class="fa fa-retweet"></i></a>
+              <a href="#"><i class="fa fa-heart"></i></a>
             </div>
           </footer>
-        </article>`
+        </article>`;
 }
 
 // send post request to /tweets, update new tweet
