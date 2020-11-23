@@ -41,7 +41,7 @@ const createTweetElement = (tweet) => {
           ${safeHTML}
           <footer>
             <div class = 'date'>
-            ${tweet.created_at}
+            ${time(tweet.created_at)} ago
             </div>
             <div class = "action">
               <a href="#"><i class="fa fa-flag"></i></a>
@@ -83,6 +83,33 @@ const validateTweet = (tweet) => {
     $('#error').hide();
     return true
   }
+}
+
+// convert integre to how long ago for each tweet
+const time = (tweetTime) => {
+  let date = new Date (tweetTime);
+  let seconds = Math.floor((new Date - tweetTime) / 1000);
+  let interval = seconds / 31536000;
+  if (interval > 1) {
+    return Math.floor(interval) + " years";
+  }
+  interval = seconds / 2592000;
+  if (interval > 1) {
+    return Math.floor(interval) + " months";
+  }
+  interval = seconds / 86400;
+  if (interval > 1) {
+    return Math.floor(interval) + " days";
+  }
+  interval = seconds / 3600;
+  if (interval > 1) {
+    return Math.floor(interval) + " hours";
+  }
+  interval = seconds / 60;
+  if (interval > 1) {
+    return Math.floor(interval) + " minutes";
+  }
+  return Math.floor(seconds) + " seconds";
 }
 
 
