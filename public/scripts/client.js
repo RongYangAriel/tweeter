@@ -8,20 +8,18 @@ $(document).ready(function() {
   $('#error').hide();
   loadTweets();
   submitTweet();
-});
+  if ($('#tweet-text').focus(function() {
+    $('#error').hide();
+  }));
+})
 
 // render each tweet, prepend it to tweets html
 function renderTweets(tweets){
-  // console.log('render Tweets', tweets);
-
-  // $('.tweet-container').empty();
-  // tweets.forEach(tweet => {
-  //   $('.tweet-container').prepend(createTweetElement(tweet));
-  // })
-
-  tweets.forEach((entry) => {
-    let $tweet = createTweetElement(entry);
-    $('#tweet-container').prepend($tweet);})
+  console.log('render Tweets', tweets);
+  $('.tweet-container').empty();
+  tweets.forEach(tweet => {
+    $('.tweet-container').prepend(createTweetElement(tweet));
+  })
 }
 
 // an escape function
@@ -63,9 +61,10 @@ const createTweetElement = (tweet) => {
 function submitTweet() {
   $( "#form" ).submit(function( event ) {
   event.preventDefault();
-  if(validateTweet($( this ).serialize())) {
+  if (validateTweet($( this ).serialize())) {
     $.ajax('/tweets', { method: "POST", data: $( this ).serialize()})
-    .then(loadTweets());
+    .then(() => loadTweets())
+    .catch(console.log('Post tweet going wrong'));
   }
   console.log('button clicked');
   }); 
@@ -74,16 +73,17 @@ function submitTweet() {
 // get tweets from /tweets, sent it to renderTweets()
 const loadTweets = () => {
   $.ajax('/tweets', {method: 'GET'})
-  .then(newtweets => renderTweets(newtweets));
+  .then(newtweets => renderTweets(newtweets))
+  .catch(console.log("Loading tweets going wrong"));
 }
 
 // validate tweet before submit it to /tweets
 const validateTweet = (tweet) => {
-  if($('.counter').text() < 0){
+  if ($('.counter').text() < 0){
     $("#error").html("<i class='material-icons'>&#xe002;</i> Tweet is too long! Please shorten it!! <i class='material-icons'>&#xe002;</i>");
     $("#error").show();
     return false;
-  } else if(tweet === 'text=') {
+  } else if (tweet === 'text=') {
     $("#error").html("<i class='material-icons'>&#xe002;</i> Tweet is empty. Please enter something! <i class='material-icons'>&#xe002;</i> ");
     $("#error").show();
     return false;
@@ -95,7 +95,6 @@ const validateTweet = (tweet) => {
 
 // convert integre to how long ago for each tweet
 const time = (tweetTime) => {
-  let date = new Date (tweetTime);
   let seconds = Math.floor((new Date - tweetTime) / 1000);
   let interval = seconds / 31536000;
   if (interval > 1) {
