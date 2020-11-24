@@ -15,7 +15,6 @@ $(document).ready(function() {
 
 // render each tweet, prepend it to tweets html
 function renderTweets(tweets){
-  console.log('render Tweets', tweets);
   $('.tweet-container').empty();
   tweets.forEach(tweet => {
     $('.tweet-container').prepend(createTweetElement(tweet));
@@ -67,7 +66,6 @@ function submitTweet() {
     .then(() => loadTweets())
     .catch(console.log('Post tweet going wrong'));
   }
-  console.log('button clicked');
   }); 
 }
 
