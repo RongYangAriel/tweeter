@@ -2,6 +2,7 @@
   border: 4px solid #635F60;
   margin: 40px 0;
   background-color: #d8b044;
+  overflow: hidden;
 }
 
 .tweet:hover{
@@ -35,11 +36,12 @@
   align-items: center;
 }
 
-.tweet p {
+.tweet .content {
   padding:20px;
   margin:10px;
   border-bottom: 4px solid #635F60;
   font-weight: 600;
+  overflow-wrap: break-word;
 }
 
 .tweet footer {
