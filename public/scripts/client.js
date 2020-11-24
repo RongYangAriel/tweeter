@@ -11,10 +11,17 @@ $(document).ready(function() {
 });
 
 // render each tweet, prepend it to tweets html
-const renderTweets = (tweets) => {
-  tweets.forEach(tweet => {
-    $('.tweet-container').prepend(createTweetElement(tweet));
-  })
+function renderTweets(tweets){
+  // console.log('render Tweets', tweets);
+
+  // $('.tweet-container').empty();
+  // tweets.forEach(tweet => {
+  //   $('.tweet-container').prepend(createTweetElement(tweet));
+  // })
+
+  tweets.forEach((entry) => {
+    let $tweet = createTweetElement(entry);
+    $('#tweet-container').prepend($tweet);})
 }
 
 // an escape function
@@ -27,15 +34,15 @@ const escape =  function(str) {
 
 // create each tweet template
 const createTweetElement = (tweet) => {
-  const safeHTML = `<p>${escape(tweet.content.text)}</p>`
+  const safeHTML = `<div class='content'>${escape(tweet.content.text)}</div>`
   return  ` <article class = 'tweet'>
           <header>
             <div class = 'name'>
               <image src="${tweet.user.avatars}"/>
-              <span>${tweet.user.name}</span>
+              <div>${tweet.user.name}</div>
             </div>
             <div class="account">
-              <span>${tweet.user.handle}</span>
+              <div>${tweet.user.handle}</div>
             </div>
           </header>
           ${safeHTML}
@@ -60,13 +67,14 @@ function submitTweet() {
     $.ajax('/tweets', { method: "POST", data: $( this ).serialize()})
     .then(loadTweets());
   }
+  console.log('button clicked');
   }); 
 }
 
 // get tweets from /tweets, sent it to renderTweets()
 const loadTweets = () => {
   $.ajax('/tweets', {method: 'GET'})
-  .then(newtweet => renderTweets(newtweet));
+  .then(newtweets => renderTweets(newtweets));
 }
 
 // validate tweet before submit it to /tweets
