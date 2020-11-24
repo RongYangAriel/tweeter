@@ -19,7 +19,8 @@ function renderTweets(tweets){
   $('.tweet-container').empty();
   tweets.forEach(tweet => {
     $('.tweet-container').prepend(createTweetElement(tweet));
-  })
+  });
+  $('#tweet-text').val('');
 }
 
 // an escape function
